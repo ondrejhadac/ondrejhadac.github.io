@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ondřej Hadač | Business, Data & Finance</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #e2e8f0;
+            --accent-color: #38bdf8;
+            --card-bg: #1e293b;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #020617 0%, var(--bg-color) 100%);
+        }
+        h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; }
+        h2 { color: var(--accent-color); font-weight: 400; margin-top: 10px; }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .about, .projects { margin-bottom: 60px; }
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-color);
+        }
+        .project-card h3 { margin-top: 0; }
+        .skills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .skill-tag {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--accent-color);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+        a.button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: opacity 0.3s;
+        }
+        a.button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Ondřej Hadač</h1>
+        <h2>Business | Data | Finance</h2>
+    </header>
+
+    <div class="container">
+        <section class="about">
+            <h2>O mně</h2>
+            <p>Jsem studentem oboru Podnikání a administrativa na ČZU s vášní pro finanční trhy a datovou analytiku. Odmaturoval jsem na SPŠE Ječná, kde jsem získal silný technický a algoritmický základ, který nyní aplikuji ve světě financí a tvorbě automatizovaných systémů.</p>
+        </section>
+
+        <section class="projects">
+            <h2>Vybrané projekty</h2>
+            
+            <div class="project-card">
+                <h3>Algoritmický trading bot (MetaTrader 5)</h3>
+                <p>Vývoj automatizovaného Python skriptu pro analýzu finančních trhů a exekuci obchodů u instrumentů jako US500 a AUDUSD. Řešení zahrnuje napojení na obchodní platformu, čtení cenové akce a vyhodnocování tržních podmínek.</p>
+                <div class="skills">
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">MetaTrader 5</span>
+                    <span class="skill-tag">Financial Markets</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3>Single-page webová aplikace a kontrolní dashboard</h3>
+                <p>Návrh a vývoj uživatelského rozhraní pro task management a ovládání AI agentů. Projekt demonstruje schopnost postavit kompletní frontendové řešení pro interakci se složitějšími datovými systémy.</p>
+                <div class="skills">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="contact">
+            <h2>Kontakt</h2>
+            <p>Aktuálně hledám příležitosti (junior pozice / stáže) v oblastech Data Analytics, Risk Management nebo Treasury.</p>
+            <a href="mailto:ondrejhadac8@gmail.com" class="button">Napsat e-mail</a>
+            <a href="https://linkedin.com/in/TVUJ-PROFIL" class="button" style="background-color: transparent; color: var(--accent-color); border: 1px solid var(--accent-color);">Můj LinkedIn</a>
+        </section>
+    </div>
+
+</body>
+</html>
