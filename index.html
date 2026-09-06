@@ -113,7 +113,7 @@
             font-size: 1.5rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 24px;
+            margin-bottom: 32px;
             display: flex;
             align-items: center;
             gap: 12px;
@@ -129,6 +129,52 @@
         p {
             color: var(--text-secondary);
             font-size: 1.05rem;
+        }
+
+        /* Timeline (Education & Certs) */
+        .timeline {
+            border-left: 2px solid var(--surface-border);
+            padding-left: 24px;
+            margin-left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .timeline-item {
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: absolute;
+            left: -31px;
+            top: 6px;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--text-secondary);
         }
 
         /* Glassmorphism Card */
@@ -234,6 +280,33 @@
         <section class="about">
             <h2>O mně</h2>
             <p>Jsem studentem oboru Podnikání a administrativa na ČZU s vášní pro finanční trhy a datovou analytiku. Odmaturoval jsem na SPŠE Ječná v oboru Elektrotechnika a počítačové systémy, kde jsem získal silný technický a algoritmický základ, který se budu snažit využít ve světě financí.</p>
+        </section>
+
+        <!-- Nová sekce s časovou osou -->
+        <section class="education">
+            <h2>Vzdělání a certifikace</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2026 – Současnost</div>
+                    <div class="timeline-title">Česká zemědělská univerzita v Praze (ČZU)</div>
+                    <div class="timeline-subtitle">Bakalářské studium: Podnikání a administrativa</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">2022 – 2026</div>
+                    <div class="timeline-title">SPŠE Ječná</div>
+                    <div class="timeline-subtitle">Středoškolské studium: Elektrotechnika a počítačové systémy</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">Certifikace</div>
+                    <div class="timeline-title">Cambridge English Certificate</div>
+                    <div class="timeline-subtitle">Anglický jazyk – Úroveň: B2</div>
+                </div>
+            </div>
         </section>
 
         <section class="projects">
