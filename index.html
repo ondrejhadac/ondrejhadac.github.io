@@ -4,153 +4,269 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ondřej Hadač | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --text-color: #e2e8f0;
-            --accent-color: #38bdf8;
-            --card-bg: #1e293b;
+            --bg-main: #09090b;
+            --surface: rgba(24, 24, 27, 0.6);
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-secondary: #a1a1aa;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.15);
         }
-        body {
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
+            padding: 0;
         }
-        
-        /* Úprava hlavičky pro fotku vpravo */
-        .header-bg {
-            background: linear-gradient(180deg, #020617 0%, var(--bg-color) 100%);
-            padding: 80px 20px 40px 20px;
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.03) 0px, transparent 50%);
+            background-attachment: fixed;
         }
-        .header-content {
-            max-width: 900px;
+
+        .container {
+            max-width: 800px;
             margin: 0 auto;
+            padding: 60px 24px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Header */
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 70px;
+            gap: 30px;
         }
+
         @media (max-width: 600px) {
-            .header-content {
+            header {
                 flex-direction: column-reverse;
                 text-align: center;
-                gap: 30px;
             }
         }
-        h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; }
-        
-        /* Placeholder pro fotku */
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        /* Photo Placeholder */
         .photo-placeholder {
-            width: 150px;
-            height: 150px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 2px dashed #94a3b8;
+            border: 2px dashed rgba(56, 189, 248, 0.4);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            color: #94a3b8;
-        }
-        /* Třída připravená pro budoucí skutečnou fotku */
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent-color);
+            color: var(--text-secondary);
+            background: var(--accent-glow);
+            box-shadow: 0 0 30px var(--accent-glow);
+            flex-shrink: 0;
+            transition: all 0.3s ease;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px 40px 20px;
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
         }
-        .about, .projects, .contact { margin-bottom: 60px; }
-        .project-card {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-color);
+
+        .profile-photo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow);
+            flex-shrink: 0;
         }
-        .project-card h3 { margin-top: 0; }
-        .skills {
+
+        /* Sections */
+        section {
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(90deg, var(--surface-border) 0%, transparent 100%);
+        }
+
+        p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+        }
+
+        /* Glassmorphism Card */
+        .card {
+            background: var(--surface);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--surface-border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(56, 189, 248, 0.3);
+        }
+
+        .card h3 {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        /* Tags */
+        .tags {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
-            margin-top: 15px;
+            margin-top: 20px;
         }
-        .skill-tag {
-            background: rgba(56, 189, 248, 0.1);
-            color: var(--accent-color);
-            padding: 5px 12px;
+
+        .tag {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            color: var(--accent);
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
-        
-        /* Úprava kontaktní sekce */
-        .contact-info p {
-            margin: 8px 0;
+
+        /* Contact Details */
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
             font-size: 1.1rem;
         }
-        a.button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 24px;
-            background-color: var(--accent-color);
-            color: #0f172a;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: opacity 0.3s;
+
+        .contact-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            width: 80px;
         }
-        a.button:hover { opacity: 0.8; }
+
+        /* Modern Button */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            color: var(--bg-main);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
     </style>
 </head>
 <body>
 
-    <div class="header-bg">
-        <div class="header-content">
+    <div class="container">
+        <header>
             <div>
                 <h1>Ondřej Hadač</h1>
             </div>
             <!-- Zástupce pro fotku -->
-            <div class="photo-placeholder">
-                FOTKA
-            </div>
-        </div>
-    </div>
+            <div class="photo-placeholder">FOTKA</div>
+        </header>
 
-    <div class="container">
         <section class="about">
             <h2>O mně</h2>
             <p>Jsem studentem oboru Podnikání a administrativa na ČZU s vášní pro finanční trhy a datovou analytiku. Odmaturoval jsem na SPŠE Ječná v oboru Elektrotechnika a počítačové systémy, kde jsem získal silný technický a algoritmický základ, který se budu snažit využít ve světě financí.</p>
         </section>
 
         <section class="projects">
-            <h2>Vybrané projekty</h2>
+            <h2>Moje projekty</h2>
             
-            <div class="project-card">
+            <div class="card">
                 <h3>Algoritmický trading bot (MetaTrader 5)</h3>
                 <p>Vývoj automatizovaného Python skriptu pro analýzu finančních trhů a exekuci obchodů u instrumentů jako US500 a AUDUSD. Řešení zahrnuje napojení na obchodní platformu, čtení cenové akce a vyhodnocování tržních podmínek.</p>
-                <div class="skills">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">MetaTrader 5</span>
-                    <span class="skill-tag">Financial Markets</span>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">MetaTrader 5</span>
+                    <span class="tag">Financial Markets</span>
                 </div>
             </div>
         </section>
 
         <section class="contact">
             <h2>Kontakt</h2>
-            <!-- Textové kontakty pro snadné kopírování -->
-            <div class="contact-info">
-                <p><strong>E-mail:</strong> ondrejhadac8@gmail.com</p>
-                <p><strong>Telefon:</strong> +420 607 443 473</p>
+            
+            <div class="card">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="contact-label">E-mail</span>
+                        <span>ondrejhadac8@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Telefon</span>
+                        <span>+420 607 443 473</span>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/in/ond%C5%99ej-hada%C4%8D-454a1b428/" target="_blank" class="btn">Propojit se na LinkedInu</a>
             </div>
-            <!-- Aktivní tlačítko na LinkedIn -->
-            <a href="https://www.linkedin.com/in/ond%C5%99ej-hada%C4%8D-454a1b428/" target="_blank" class="button" style="background-color: transparent; color: var(--accent-color); border: 1px solid var(--accent-color);">Můj LinkedIn</a>
         </section>
     </div>
 
