@@ -18,19 +18,56 @@
             color: var(--text-color);
             line-height: 1.6;
         }
-        header {
-            text-align: center;
-            padding: 100px 20px;
+        
+        /* Úprava hlavičky pro fotku vpravo */
+        .header-bg {
             background: linear-gradient(180deg, #020617 0%, var(--bg-color) 100%);
+            padding: 80px 20px 40px 20px;
+        }
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 30px;
+            }
         }
         h1 { margin: 0; font-size: 3rem; letter-spacing: 1px; }
         h2 { color: var(--accent-color); font-weight: 400; margin-top: 10px; }
+        
+        /* Placeholder pro fotku */
+        .photo-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px dashed #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        /* Třída připravená pro budoucí skutečnou fotku */
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-color);
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px 40px 20px;
         }
-        .about, .projects { margin-bottom: 60px; }
+        .about, .projects, .contact { margin-bottom: 60px; }
         .project-card {
             background-color: var(--card-bg);
             padding: 25px;
@@ -52,9 +89,15 @@
             border-radius: 20px;
             font-size: 0.85rem;
         }
+        
+        /* Úprava kontaktní sekce */
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 1.1rem;
+        }
         a.button {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 20px;
             padding: 12px 24px;
             background-color: var(--accent-color);
             color: #0f172a;
@@ -68,10 +111,18 @@
 </head>
 <body>
 
-    <header>
-        <h1>Ondřej Hadač</h1>
-        <h2>Business | Data | Finance</h2>
-    </header>
+    <div class="header-bg">
+        <div class="header-content">
+            <div>
+                <h1>Ondřej Hadač</h1>
+                <h2>Business | Data | Finance</h2>
+            </div>
+            <!-- Zástupce pro fotku -->
+            <div class="photo-placeholder">
+                FOTKA
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <section class="about">
@@ -91,23 +142,17 @@
                     <span class="skill-tag">Financial Markets</span>
                 </div>
             </div>
-
-            <div class="project-card">
-                <h3>Single-page webová aplikace a kontrolní dashboard</h3>
-                <p>Návrh a vývoj uživatelského rozhraní pro task management a ovládání AI agentů. Projekt demonstruje schopnost postavit kompletní frontendové řešení pro interakci se složitějšími datovými systémy.</p>
-                <div class="skills">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                </div>
-            </div>
         </section>
 
         <section class="contact">
             <h2>Kontakt</h2>
-            <p>Aktuálně hledám příležitosti (junior pozice / stáže) v oblastech Data Analytics, Risk Management nebo Treasury.</p>
-            <a href="mailto:ondrejhadac8@gmail.com" class="button">Napsat e-mail</a>
-            <a href="https://linkedin.com/in/TVUJ-PROFIL" class="button" style="background-color: transparent; color: var(--accent-color); border: 1px solid var(--accent-color);">Můj LinkedIn</a>
+            <!-- Textové kontakty pro snadné kopírování -->
+            <div class="contact-info">
+                <p><strong>E-mail:</strong> ondrejhadac8@gmail.com</p>
+                <p><strong>Telefon:</strong> +420 607 443 473</p>
+            </div>
+            <!-- Aktivní tlačítko na LinkedIn -->
+            <a href="https://www.linkedin.com/in/ond%C5%99ej-hada%C4%8D-454a1b428/" target="_blank" class="button" style="background-color: transparent; color: var(--accent-color); border: 1px solid var(--accent-color);">Můj LinkedIn</a>
         </section>
     </div>
 
