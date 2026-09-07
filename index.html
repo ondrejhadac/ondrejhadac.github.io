@@ -94,16 +94,6 @@
             border-color: var(--accent);
         }
 
-        .profile-photo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow);
-            flex-shrink: 0;
-        }
-
         /* Sections */
         section {
             margin-bottom: 70px;
@@ -143,6 +133,11 @@
 
         .timeline-item {
             position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .timeline-item:hover {
+            transform: translateY(-6px);
         }
 
         .timeline-dot {
@@ -206,6 +201,7 @@
             gap: 10px;
             flex-wrap: wrap;
             margin-top: 20px;
+            margin-bottom: 20px;
         }
 
         .tag {
@@ -264,6 +260,80 @@
             color: var(--bg-main);
             box-shadow: 0 0 20px var(--accent-glow);
         }
+        
+        /* Tlačítko pro spuštění (Modal) */
+        .btn-modal {
+            padding: 10px 20px;
+            background-color: #0073b1;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .btn-modal:hover {
+            background-color: #005582;
+            transform: translateY(-2px);
+        }
+
+        /* Ztmavené pozadí modalu */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        /* Samotné vyskakovací okno */
+        .modal-content {
+            background-color: #ffffff;
+            color: #18181b; /* Přidána tmavá barva textu pro čitelnost na bílém pozadí */
+            margin: 8% auto;
+            padding: 30px;
+            border-radius: 12px;
+            width: 85%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .modal-content h2 {
+            color: #18181b; /* Tmavý nadpis v modalu */
+        }
+        
+        .modal-content p {
+            color: #3f3f46; /* Tmavší šedá pro odstavec v modalu */
+        }
+
+        /* Křížek na zavření */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #999;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-btn:hover {
+            color: #333;
+        }
+
+        /* Styl obrázků uvnitř okna */
+        .modal-gallery img {
+            width: 100%;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
@@ -273,7 +343,6 @@
             <div>
                 <h1>Ondřej Hadač</h1>
             </div>
-            <!-- Zástupce pro fotku -->
             <div class="photo-placeholder">FOTKA</div>
         </header>
 
@@ -282,7 +351,6 @@
             <p>Jsem studentem oboru Podnikání a administrativa na ČZU s vášní pro finanční trhy a datovou analytiku. Odmaturoval jsem na SPŠE Ječná v oboru Elektrotechnika a počítačové systémy, kde jsem získal silný technický a algoritmický základ, který se budu snažit využít ve světě financí.</p>
         </section>
 
-        <!-- Nová sekce s časovou osou -->
         <section class="education">
             <h2>Vzdělání a certifikace</h2>
             <div class="timeline">
@@ -306,7 +374,20 @@
                     <div class="timeline-title">Cambridge English Certificate</div>
                     <div class="timeline-subtitle">Anglický jazyk – Úroveň: B2</div>
                 </div>
-                <button class="btn-modal" onclick="openModal('bot-modal')">Ukázat projekt</button>
+
+                <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Certifikace</div>
+                <div class="timeline-title">Osvědčení o odborné způsobilosti v elektrotechnice</div>
+                <div class="timeline-subtitle">NV č. 194/2022 Sb., § 5 (Elektrotechnik)</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Certifikace</div>
+                <div class="timeline-title">Certifikát OKsystem (Checkbot)</div>
+                <div class="timeline-subtitle">Znalost a obsluha systému Checkbot</div>
+            </div>
             </div>
         </section>
 
@@ -321,6 +402,8 @@
                     <span class="tag">MetaTrader 5</span>
                     <span class="tag">Financial Markets</span>
                 </div>
+                <!-- Tlačítko přesunuté sem k projektu -->
+                <button class="btn-modal" onclick="openModal('bot-modal')">Ukázat projekt</button>
             </div>
         </section>
 
@@ -343,118 +426,38 @@
             </div>
         </section>
     </div>
-<div id="bot-modal" class="modal-overlay">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal('bot-modal')">&times;</span>
-        
-        <h2>Algoritmický trading bot (MetaTrader 5)</h2>
-        <p>Detailní popis vývoje obchodního robota pro měnové páry a indexy, založený na skriptování v Pythonu. Součástí projektu je také řešení komunikace mezi MT5 a vizualizace výstupů.</p>
-        
-        <div class="modal-gallery">
+
+    <!-- Vyskakovací okno pro projekt -->
+    <div id="bot-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('bot-modal')">&times;</span>
+            
+            <h2>Algoritmický trading bot (MetaTrader 5)</h2>
+            <p>Detailní popis vývoje obchodního robota pro měnové páry a indexy, založený na skriptování v Pythonu. Součástí projektu je také řešení komunikace mezi MT5 a vizualizace výstupů.</p>
+            
+            <div class="modal-gallery">
+                <!-- Zde vlož obrázky -->
             </div>
+        </div>
     </div>
-</div>
 
-<style>
-    /* Animace pro položky na časové ose (musíš jim v HTML přidat class="timeline-item") */
-    .timeline-item {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .timeline-item:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-    }
-
-    /* Tlačítko pro spuštění */
-    .btn-modal {
-        padding: 10px 20px;
-        background-color: #0073b1; /* Modrá barva */
-        color: white;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.3s, transform 0.2s;
-    }
-    .btn-modal:hover {
-        background-color: #005582;
-        transform: translateY(-2px);
-    }
-
-    /* Ztmavené pozadí modalu */
-    .modal-overlay {
-        display: none;
-        position: fixed;
-        z-index: 1000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(5px);
-    }
-
-    /* Samotné vyskakovací okno */
-    .modal-content {
-        background-color: #ffffff;
-        margin: 8% auto;
-        padding: 30px;
-        border-radius: 12px;
-        width: 85%;
-        max-width: 800px;
-        position: relative;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        animation: fadeIn 0.4s ease;
-    }
-
-    /* Křížek na zavření */
-    .close-btn {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        color: #999;
-        font-size: 30px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: color 0.3s;
-    }
-    .close-btn:hover {
-        color: #333;
-    }
-
-    /* Styl obrázků uvnitř okna */
-    .modal-gallery img {
-        width: 100%;
-        border-radius: 8px;
-        margin-top: 15px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    /* Animace objevení */
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    function openModal(id) {
-        document.getElementById(id).style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Vypne scrollování webu v pozadí
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).style.display = 'none';
-        document.body.style.overflow = 'auto'; // Zapne scrollování webu
-    }
-
-    // Zavření okna při kliknutí do prázdného místa mimo něj
-    window.onclick = function(event) {
-        const modal = document.getElementById('bot-modal');
-        if (event.target === modal) {
-            closeModal('bot-modal');
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'block';
+            document.body.style.overflow = 'hidden'; 
         }
-    }
-</script>
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('bot-modal');
+            if (event.target === modal) {
+                closeModal('bot-modal');
+            }
+        }
+    </script>
 </body>
 </html>
